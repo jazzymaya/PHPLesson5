@@ -1,0 +1,22 @@
+<?php //This is a PHP file
+$link = mysqli_connect("localhost", "root", "root", "demo"); /* We are opening a connection to the database "demo" 
+with a username and password of root and it runs in the users localhost. The variable to refer the connection is called "link". */
+ 
+if($link === false){ /* This is saying if anything, username, password, database name, or localhost 
+port is wrong, it will throw an error. */
+    die("ERROR: Could not connect. " . mysqli_connect_error()); /* This is the error code saying it
+     could not connect to the database. */
+}
+
+$sql = "INSERT INTO persons (first_name, last_name, email_address) VALUES ('Wormy', 'VonWormenstein', 'email@email.com')";
+/* The code above uses an SQL query as a string to add a new record. It inserts into the "persons" table a new value in
+"first name", "last name" and "email address" columns. The new data that will be in these columns are 
+"Wormy", "VonWormensteain", and "email@email.com". */
+if(mysqli_query($link, $sql)){ // This is saying that if the sql query was successful,...
+    echo "Records added successfully."; //Output that the records have been added successfully.
+} else{ //This is saying if the opposite of the above if statement happens,...
+    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link); /* Then throw the error "could
+    not execute $sql". */
+}
+mysqli_close($link);//This closes the database.
+?>//End of php file.
